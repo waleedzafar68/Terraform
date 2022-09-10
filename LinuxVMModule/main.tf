@@ -47,10 +47,10 @@ resource "azurerm_linux_virtual_machine" "VTFWPvm" {
   }
 
   source_image_reference {
-    offer                 = var.sourceImage.offer
-    publisher             = var.sourceImage.publisher
-    sku                   = var.sourceImage.sku
-    version               = var.sourceImage.version
+    offer                 = var.sourceImage[0].offer
+    publisher             = var.sourceImage[0].publisher
+    sku                   = var.sourceImage[0].sku
+    version               = var.sourceImage[0].version
   }
 
   computer_name                   = var.compName
