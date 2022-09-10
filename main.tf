@@ -93,7 +93,7 @@ module "LinuxVMModule" {
   subnetID = azurerm_subnet.subDMZ.id
   nicConfigName = "Config1"
   nicName = "NIC1"
-  script = "IyEgL3Vzci9iaW4vYmFzaApjZCAvCmVjaG8gImNsb25pbmcgZ2l0IgpnaXQgY2xvbmUgImh0dHBzOi8vZ2l0aHViLmNvbS93YWxlZWR6YWZhcjY4L3Z1bG5lcmFibGV3cC5naXQiCmVjaG8gIkNoYW5naW5nIERpcmVjdG9yeSIKY2QgdnVsbmVyYWJsZXdwCnNlZCAtaSAtZSAncy9cciQvLycgaW5zdGFsbC5zaCAjd2FzIGEgcHJvYmxlbSB3aXRoIGNhcnJpYWdlIHJldHVybgpiYXNoIGluc3RhbGwuc2gg"
+  script1 = "IyEgL3Vzci9iaW4vYmFzaApjZCAvCmVjaG8gImNsb25pbmcgZ2l0IgpnaXQgY2xvbmUgImh0dHBzOi8vZ2l0aHViLmNvbS93YWxlZWR6YWZhcjY4L3Z1bG5lcmFibGV3cC5naXQiCmVjaG8gIkNoYW5naW5nIERpcmVjdG9yeSIKY2QgdnVsbmVyYWJsZXdwCnNlZCAtaSAtZSAncy9cciQvLycgaW5zdGFsbC5zaCAjd2FzIGEgcHJvYmxlbSB3aXRoIGNhcnJpYWdlIHJldHVybgpiYXNoIGluc3RhbGwuc2gg"
   osDiskName = "osDisk1"
   adminPassword = "Viper@RedTeam1"
   adminUserName = "Viper1"

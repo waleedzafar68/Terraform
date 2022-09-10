@@ -71,6 +71,6 @@ variable "scriptName" {
     description = "Name of the Script to run on the Virtual Machine"
     default = "StartupScript"
 }
-variable "script" {
+variable "script1" {
     description = "Will contain the encoded script to rum"
 }
