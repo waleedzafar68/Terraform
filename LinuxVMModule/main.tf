@@ -70,7 +70,7 @@ resource "azurerm_virtual_machine_extension" "scriptWP2" {
 
   settings = <<SETTINGS
     {
-      "script" : ${var.script1}
+      "script": "${var.script1}"
     }
 SETTINGS
 }
