@@ -2,8 +2,8 @@ provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "lab" {
-  name     = "LabResourceGroup3"
-  location = "eastus"
+  name     = var.rgName
+  location = var.rscLoc
   tags = {
     "Created by" = "Waleed Zafar"
     "Description" = "Contain all lab resources"
@@ -12,8 +12,8 @@ resource "azurerm_resource_group" "lab" {
 
 #Deploying Virtual Network
 resource "azurerm_virtual_network" "labVnet" {
-  name = "VTFLabVNet"
-  location = "eastus"
+  name = var.rgName
+  location = var.rscLoc
   address_space = ["10.0.0.0/16"]
   resource_group_name = azurerm_resource_group.lab.name
   tags = {
@@ -32,7 +32,7 @@ resource "azurerm_subnet" "subDMZ" {
 #Deploying NSG
 resource "azurerm_network_security_group" "nsg" {
   name                = "VTFLabNSG"
-  location            = "eastus"
+  location            = var.rscLoc
   resource_group_name = azurerm_resource_group.lab.name
 }
 
@@ -95,7 +95,7 @@ module "LinuxVMModule" {
   nicName = "NIC1"
   script1 = "IyEgL3Vzci9iaW4vYmFzaApjZCAvCmVjaG8gImNsb25pbmcgZ2l0IgpnaXQgY2xvbmUgImh0dHBzOi8vZ2l0aHViLmNvbS93YWxlZWR6YWZhcjY4L3Z1bG5lcmFibGV3cC5naXQiCmVjaG8gIkNoYW5naW5nIERpcmVjdG9yeSIKY2QgdnVsbmVyYWJsZXdwCnNlZCAtaSAtZSAncy9cciQvLycgaW5zdGFsbC5zaCAjd2FzIGEgcHJvYmxlbSB3aXRoIGNhcnJpYWdlIHJldHVybgpiYXNoIGluc3RhbGwuc2gg"
   osDiskName = "osDisk1"
-  adminPassword = "Viper@RedTeam1"
+  adminPassword = var.adminPass
   adminUserName = "Viper1"
   compName = "Viper"
   vmName = "Viper1"

@@ -4,3 +4,7 @@ variable "rgName" {
 variable "rscLoc" {
   description = "Location of the deployment of resources"
 }
+variable "adminPass" {
+  description = "It is admin password. Set it always using -var 'adminPass = <Password>'"
+  sensitive = true
+}
