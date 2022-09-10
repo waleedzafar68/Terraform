@@ -72,5 +72,5 @@ variable "scriptName" {
     default = "StartupScript"
 }
 variable "script1" {
-    description = "Will contain the encoded script to rum"
+    description = "Will contain the encoded script to run"
 }
