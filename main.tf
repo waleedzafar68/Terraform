@@ -84,21 +84,13 @@ resource "azurerm_subnet_network_security_group_association" "nsgDMZsn" {
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
-data "azurerm_resource_group" "rg" {
-  name = azurerm_resource_group.lab.name
-  location = azurerm_resource_group.lab.location
-}
-data "azurerm_subnet" "subnet" {
-    id = azurerm_subnet.subDMZ.id
-}
-
 module "LinuxVMModule" {
   source = "./LinuxVMModule"
-  rgName = rg.name
-  rscLoc = rg.location
-  pubIPName = var.pubIP1
-  domainLabel = var.domName1
-  subnetID = subnet.id
+  rgName = azurerm_resource_group.lab.name
+  rscLoc = azurerm_resource_group.lab.location
+  pubIPName = "testPubIP"
+  domainLabel = "test1red"
+  subnetID = azurerm_subnet.subDMZ.id
   nicConfigName = "Config1"
   nicName = "NIC1"
   script = "IyEgL3Vzci9iaW4vYmFzaApjZCAvCmVjaG8gImNsb25pbmcgZ2l0IgpnaXQgY2xvbmUgImh0dHBzOi8vZ2l0aHViLmNvbS93YWxlZWR6YWZhcjY4L3Z1bG5lcmFibGV3cC5naXQiCmVjaG8gIkNoYW5naW5nIERpcmVjdG9yeSIKY2QgdnVsbmVyYWJsZXdwCnNlZCAtaSAtZSAncy9cciQvLycgaW5zdGFsbC5zaCAjd2FzIGEgcHJvYmxlbSB3aXRoIGNhcnJpYWdlIHJldHVybgpiYXNoIGluc3RhbGwuc2gg"
