@@ -57,9 +57,8 @@ resource "azurerm_virtual_machine_extension" "vmext" {
   virtual_machine_id   = azurerm_windows_virtual_machine.DomainControl.id
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
-  type_handler_version = "1.10"
+  type_handler_version = "1.9"
   
-  ### THIS PART IS ALL NEEDED, INCLUDING THE WEIRD SETTINGS BIT.  
   settings = <<SETTINGS
     {
         "commandToExecute": "powershell -ExecutionPolicy Unrestricted -EncodedCommand ${var.script1}"
