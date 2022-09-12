@@ -23,12 +23,12 @@ resource "azurerm_network_security_group" "nsg" {
 }
 
 resource "azurerm_network_security_rule" "rulesNSG" {
-  count = nsgRulesCount
+  count                       = var.nsgRulesCount
   name                        = var.rulesNSGNames[count.index]
   priority                    = var.priorities[count.index]
-  direction                   = var.direction[(count.index)%1]
+  direction                   = var.directionRule[(count.index)%1]
   access                      = var.AllowDeny[(count.index)%1]
-  protocol                    = var.protocol[(count.index)%1]
+  protocol                    = var.protocols[(count.index)%1]
   source_port_range           = var.sourcePorts[(count.index)%1]
   destination_port_range      = var.destinationPorts
   source_address_prefix       = var.sourcePrefix[(count.index)%1]
