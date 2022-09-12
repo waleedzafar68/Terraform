@@ -13,7 +13,7 @@ resource "azurerm_subnet" "subList" {
   name  = var.subnetNames[count.index] 
   resource_group_name = var.rgName
   virtual_network_name = var.vnetName
-  address_prefixes = var.addressPrefixes[cout.index]
+  address_prefixes = var.addressPrefixes[count.index]
 }
 #Deploying NSG
 resource "azurerm_network_security_group" "nsg" {
