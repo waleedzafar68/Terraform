@@ -30,7 +30,7 @@ resource "azurerm_network_security_rule" "rulesNSG" {
   access                      = var.AllowDeny[(count.index)%1]
   protocol                    = var.protocols[(count.index)%1]
   source_port_range           = var.sourcePorts[(count.index)%1]
-  destination_port_range      = var.destinationPorts
+  destination_port_range      = var.destinationPorts[count.index]
   source_address_prefix       = var.sourcePrefix[(count.index)%1]
   destination_address_prefix  = var.destPrefix[(count.index)%1]
   resource_group_name         = var.rgName
