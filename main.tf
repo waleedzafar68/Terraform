@@ -47,7 +47,7 @@ module "LinuxVMModule" {
   vmName = "Viper1"
 }
 module "WindowsServerModule" {
-  source = "./WindowsServerModule"
+  source = "./WindowsVMModule"
   rgName = azurerm_resource_group.lab.name
   rscLoc = azurerm_resource_group.lab.location
   pubIPName = "test2PubIP"
