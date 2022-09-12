@@ -35,6 +35,9 @@ resource "azurerm_network_security_rule" "rulesNSG" {
   destination_address_prefix  = var.destPrefix[(count.index)%(length(var.destPrefix))]
   resource_group_name         = var.rgName
   network_security_group_name = var.nsgName
+  depends_on = [
+    azurerm_network_security_group.nsg
+  ]
 }
 
 
@@ -42,4 +45,7 @@ resource "azurerm_network_security_rule" "rulesNSG" {
 resource "azurerm_subnet_network_security_group_association" "nsgDMZsn" {
   subnet_id                 = azurerm_subnet.subList[0].id
   network_security_group_id = azurerm_network_security_group.nsg.id
+  depends_on = [
+    azurerm_network_security_group.nsg, azurerm_subnet.subList[0]
+  ]
 }
