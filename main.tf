@@ -21,14 +21,8 @@ module "Networking" {
   addressPrefixes = [["10.0.1.0/24"],["10.0.2.0/24"],["10.0.3.0/24"]]
   nsgName = "NSGforAll"
   rulesNSGNames = ["Rule443","Rule80","Rule22","Rule3389"]
-  directionRule = ["Inbound"]
   priorities = ["1001","1002","1003","1004"]
-  AllowDeny = ["Allow"]
-  protocols = ["Tcp"]
-  sourcePorts = ["*"]
   destinationPorts = ["443","80","22","3389"]
-  sourcePrefix = ["*"]
-  destPrefix = ["*"]
 }
 module "LinuxVMModule" {
   source = "./LinuxVMModule"
