@@ -26,13 +26,13 @@ resource "azurerm_network_security_rule" "rulesNSG" {
   count                       = var.nsgRulesCount
   name                        = var.rulesNSGNames[count.index]
   priority                    = var.priorities[count.index]
-  direction                   = var.directionRule[(count.index)%1]
-  access                      = var.AllowDeny[(count.index)%1]
-  protocol                    = var.protocols[(count.index)%1]
-  source_port_range           = var.sourcePorts[(count.index)%1]
-  destination_port_range      = var.destinationPorts[count.index]
-  source_address_prefix       = var.sourcePrefix[(count.index)%1]
-  destination_address_prefix  = var.destPrefix[(count.index)%1]
+  direction                   = var.directionRule[(count.index)%(length(var.directionRule))]
+  access                      = var.AllowDeny[(count.index)%(length(var.AllowDeny))]
+  protocol                    = var.protocols[(count.index)%(length(var.protocols))]
+  source_port_range           = var.sourcePorts[(count.index)%(length(var.sourcePorts))]
+  destination_port_range      = var.destinationPorts[(count.index)%(length(var.destinationPorts))]
+  source_address_prefix       = var.sourcePrefix[(count.index)%(length(var.sourcePrefix))]
+  destination_address_prefix  = var.destPrefix[(count.index)%(length(var.destPrefix))]
   resource_group_name         = var.rgName
   network_security_group_name = var.nsgName
 }
