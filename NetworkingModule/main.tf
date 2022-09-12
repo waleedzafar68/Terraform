@@ -7,13 +7,16 @@ resource "azurerm_virtual_network" "labVnet" {
   tags = var.tags
 }
 
-#Deploying Subnet DMZ
+#Deploying Subnets
 resource "azurerm_subnet" "subList" {
   count = var.subnetCount
   name  = var.subnetNames[count.index] 
   resource_group_name = var.rgName
   virtual_network_name = var.vnetName
   address_prefixes = var.addressPrefixes[count.index]
+  depends_on = [
+    azurerm_virtual_network.labVnet
+  ]
 }
 #Deploying NSG
 resource "azurerm_network_security_group" "nsg" {
