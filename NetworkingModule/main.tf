@@ -23,17 +23,17 @@ module "NSGDeply" {
   rgName        = var.rgName
   count         = var.nsgCount
   nsgName       = var.nsgNames[count.index]
-  rulesNSGNames = var.rulesNSGNames[(count.index)%length(var.rulesNSGNames)]
+  rulesNSGNames = var.rulesNSGNames
   rscLoc        = var.rscLoc
   nsgRulesCount = var.nsgRulesCount[count.index]
-  priorities    = var.priorities[(count.index)%length(var.priorities)]
-  directionRule = var.directionRule[(count.index)%(length(var.directionRule))]
-  AllowDeny     = var.AllowDeny[(count.index)%(length(var.AllowDeny))]
-  protocols     = var.protocols[(count.index)%(length(var.protocols))]
-  sourcePorts   = var.sourcePorts[(count.index)%(length(var.sourcePorts))]
-  destinationPorts = var.destinationPorts[(count.index)%(length(var.destinationPorts))]
-  sourcePrefix  = var.sourcePrefix[(count.index)%(length(var.sourcePrefix))]
-  destPrefix    = var.destPrefix[(count.index)%(length(var.destPrefix))]    
+  priorities    = var.priorities
+  directionRule = var.directionRule
+  AllowDeny     = var.AllowDeny
+  protocols     = var.protocols
+  sourcePorts   = var.sourcePorts
+  destinationPorts = var.destinationPorts
+  sourcePrefix  = var.sourcePrefix
+  destPrefix    = var.destPrefix
 }
 
 
