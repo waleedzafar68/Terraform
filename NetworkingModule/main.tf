@@ -20,28 +20,19 @@ resource "azurerm_subnet" "subList" {
 }
 module "NSGDeply" {
   source = "../NSGModule"
+  rgName        = var.rgName
   count         = var.nsgCount
   nsgName       = var.nsgNames[count.index]
-  rulesNSGNames = var.rulesNSGNames[(count.index)%length(var.rulesNSGNames)]
+  rulesNSGNames = var.rulesNSGNames
   rscLoc        = var.rscLoc
-  nsgRulesCount = var.nsgCount[count.index]
-  priorities    = var.priorities[(count.index)%length(var.priorities)]
-  directionRule = var.directionRule[(count.index)%(length(var.directionRule))]
-  AllowDeny     = var.AllowDeny[(count.index)%(length(var.AllowDeny))]
-  protocols     = var.protocols[(count.index)%(length(var.protocols))]
-  sourcePorts   = var.sourcePorts[(count.index)%(length(var.sourcePorts))]
-  dedestinationPorts = var.destinationPorts[(count.index)%(length(var.destinationPorts))]
-  sourcePrefix  = var.sourcePrefix[(count.index)%(length(var.sourcePrefix))]
-  destPrefix    = var.destPrefix[(count.index)%(length(var.destPrefix))]    
+  nsgRulesCount = var.nsgRulesCount[count.index]
+  priorities    = var.priorities
+  directionRule = var.directionRule
+  AllowDeny     = var.AllowDeny
+  protocols     = var.protocols
+  sourcePorts   = var.sourcePorts
+  destinationPorts = var.destinationPorts
+  sourcePrefix  = var.sourcePrefix
+  destPrefix    = var.destPrefix
 }
 
-
-#Attaching Subnet to NSG
-resource "azurerm_subnet_network_security_group_association" "nsgDMZsn" {
-  count = var.nsgCount  
-  subnet_id  = azurerm_subnet.subList[count.index].id
-  network_security_group_id = module.NSGDeply.nsg_ids[count.index]
-  depends_on = [
-    module.NSGDeply.nsg_ids[count.index], azurerm_subnet.subList[count.index]
-  ]
-}

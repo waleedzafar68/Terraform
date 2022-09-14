@@ -7,7 +7,7 @@ resource "azurerm_network_security_group" "nsg" {
 
 resource "azurerm_network_security_rule" "rulesNSG" {
   count                       = var.nsgRulesCount
-  name                        = var.rulesNSGNames
+  name                        = var.rulesNSGNames[count.index]
   priority                    = var.priorities[count.index]
   direction                   = var.directionRule[(count.index)%(length(var.directionRule))]
   access                      = var.AllowDeny[(count.index)%(length(var.AllowDeny))]
