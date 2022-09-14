@@ -1,19 +1,3 @@
-variable "vnetName" {
-    description = "Name of the virtual Network"
-}
-variable "vnetAddressSpace" {
-    description = "Address Space for the virtual Network"
-    type = list(string)
-    default = ["10.0.0.0/16"]
-}
-variable "subnetCount" {
-    description = "Number of Subnets you want to create in the VNet"
-    type = number
-}
-variable "nsgRulesCount" {
-    description = "Number of Rules you want to create in the NSG"
-    type = list(number)  
-}
 variable "rgName" {
     description = "Name of the Resource Group that will contain all the resources for the lab"
 }
@@ -27,22 +11,15 @@ variable "tags" {
     "Created by" = "Waleed Zafar"
     }
 }
-variable "subnetNames" {
-  description = "List of subnet Names"
-  type = list(string)
-  default = []
+
+variable "nsgRulesCount" {
+    description = "Number of Rules you want to create in the NSG"
+    type = number  
 }
-variable "addressPrefixes" {
-    description = "List of lists of address prefixes for the subnets"
-    default = [[]]  
-    type = list(list(string))
-}
-variable "nsgCount" {
-  description = "Number of NSGs"
-}
-variable "nsgNames" {
+
+variable "nsgName" {
     description = "Name of the NSG"
-    type = list(string)
+    type = string
 }
 variable "rulesNSGNames" {
    description = "Name of the rules. List should be equal to count variable in length" 

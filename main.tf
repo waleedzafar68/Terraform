@@ -16,11 +16,11 @@ module "Networking" {
   rscLoc = azurerm_resource_group.lab.location
   vnetName = "VNetLab"
   subnetCount = 3
-  nsgRulesCount = 4
   subnetNames = ["subDMZ","subServer","subUser"]
   addressPrefixes = [["10.0.1.0/24"],["10.0.2.0/24"],["10.0.3.0/24"]]
-  nsgName = "NSGforAll"
-  rulesNSGNames = ["Rule443","Rule80","Rule22","Rule3389"]
+  nsgNames = ["NSGforAll", "NSGServer"]
+  nsgRulesCount =[4,2]
+  rulesNSGNames = ["Rule22","Rule3389", "Rule443","Rule80"]
   priorities = ["1001","1002","1003","1004"]
   destinationPorts = ["443","80","22","3389"]
 }
