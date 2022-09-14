@@ -11,6 +11,9 @@ variable "tags" {
     "Created by" = "Waleed Zafar"
     }
 }
+variable "subnetID" {
+   description = "ID of the subnet NSG will be attached to"
+}
 
 variable "nsgRulesCount" {
     description = "Number of Rules you want to create in the NSG"

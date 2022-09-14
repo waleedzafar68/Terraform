@@ -20,6 +20,7 @@ resource "azurerm_subnet" "subList" {
 }
 module "NSGDeply" {
   source = "../NSGModule"
+  subnetID =      azurerm_subnet.subList[count.index].id
   rgName        = var.rgName
   count         = var.nsgCount
   nsgName       = var.nsgNames[count.index]
@@ -34,15 +35,9 @@ module "NSGDeply" {
   destinationPorts = var.destinationPorts
   sourcePrefix  = var.sourcePrefix
   destPrefix    = var.destPrefix
+  depends_on = [
+    azurerm_subnet.subList
+  ]
 }
 
 
-#Attaching Subnet to NSG
-resource "azurerm_subnet_network_security_group_association" "nsgDMZsn" {
-  count = var.nsgCount  
-  subnet_id  = azurerm_subnet.subList[count.index].id
-  network_security_group_id = module.NSGDeply.nsg_ids[count.index]
-  depedepends_on = [
-    module.NSGDeply
-  ]  
-}

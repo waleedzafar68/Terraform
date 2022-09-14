@@ -22,3 +22,12 @@ resource "azurerm_network_security_rule" "rulesNSG" {
     azurerm_network_security_group.nsg
   ]
 }
+#Attaching Subnet to NSG
+resource "azurerm_subnet_network_security_group_association" "nsgDMZsn" {
+  count = var.nsgCount  
+  subnet_id  = var.subnetID
+  network_security_group_id = azurerm_network_security_group.nsg.id
+  depends_on = [
+    azurerm_network_security_group.nsg
+  ]
+}
