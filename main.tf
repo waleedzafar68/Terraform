@@ -18,7 +18,7 @@ module "Networking" {
   subnetCount = 4
   nsgCount = 3
   subnetNames = ["subDMZ","subKali","subServer","subUser"]
-  addressPrefixes = [["10.0.1.0/24"],["10.0.2.0/24"],["10.0.3.0/24"]]
+  addressPrefixes = [["10.0.1.0/24"],["10.0.2.0/24"],["10.0.3.0/24"],["10.0.4.0/24"]]
   nsgNames = ["NSGforAll", "NSGKali", "NSGServer"]
   nsgRulesCount =[4,2,1]
   rulesNSGNames = ["Rule22","Rule3389", "Rule443","Rule80"]
@@ -44,7 +44,7 @@ module "LinuxVMModule" {
   vmName = "Viper1"
 }
 module "LinuxVMModule2" {
-  source = "./LinuxVMModule"
+  source = "./LinuxVMModulePlan"
   rgName = azurerm_resource_group.lab.name
   rscLoc = azurerm_resource_group.lab.location
   pubIPName = "kaliPublicIP"
@@ -58,12 +58,6 @@ module "LinuxVMModule2" {
   adminUserName = "Viper1"
   compName = "Viper"
   vmName = "Viper3"
-  sourceImage = [{
-    publisher = "kali-linux"
-    offer = "kali"
-    sku = "kali"
-    version ="latest"
-  }]
 }
 module "WindowsServerModule" {
   source = "./WindowsVMModule"
