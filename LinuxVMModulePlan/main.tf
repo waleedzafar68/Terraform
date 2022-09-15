@@ -52,6 +52,12 @@ resource "azurerm_linux_virtual_machine" "VTFWPvm" {
     sku                   = var.sourceImage[0].sku
     version               = var.sourceImage[0].version
   }
+  
+  plan {
+    name = var.plan.name
+    publisher = var.plan.publisher
+    product = var.plan.product
+  }
 
   computer_name                   = var.compName
   admin_username                  = var.adminUserName

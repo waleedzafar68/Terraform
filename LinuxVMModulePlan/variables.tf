@@ -80,7 +80,7 @@ variable plan {
     publisher = string
     product = string
   })
-default{
+default = {
 	name = "kali"
 	publisher = "kali-linux"
 	product = "kali-linux"
