@@ -52,7 +52,7 @@ resource "azurerm_linux_virtual_machine" "VTFWPvm" {
     sku                   = var.sourceImage[0].sku
     version               = var.sourceImage[0].version
   }
-  
+
   plan {
     name = var.plan.name
     publisher = var.plan.publisher
@@ -63,20 +63,10 @@ resource "azurerm_linux_virtual_machine" "VTFWPvm" {
   admin_username                  = var.adminUserName
   disable_password_authentication = false
   admin_password = var.adminPassword
-
+  custom_data = var.script1
 }
-
-#Running Script to initialize website on Port 80
-resource "azurerm_virtual_machine_extension" "scriptWP2" {
-  name                 = "WordPressInitScript2"
-  virtual_machine_id   = azurerm_linux_virtual_machine.VTFWPvm.id
-  publisher            = "Microsoft.Azure.Extensions"
-  type                 = "CustomScript"
-  type_handler_version = "2.0"
-
-  settings = <<SETTINGS
-    {
-      "script": "${var.script1}"
-    }
-SETTINGS
-}
+resource "azurerm_marketplace_agreement" "LinuxVMagreement" {
+    publisher = var.plan.publisher
+    offer     = var.plan.offer
+    plan      = var.plan.name
+   }

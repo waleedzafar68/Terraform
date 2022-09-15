@@ -83,6 +83,6 @@ variable plan {
 default = {
 	name = "kali"
 	publisher = "kali-linux"
-	product = "kali-linux"
+	product = "kali"
 }
 }
