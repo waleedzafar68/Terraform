@@ -33,7 +33,7 @@ variable "vmName" {
 }
 variable "vmSize" {
     description = "Virtual Machine Size"
-    default = "Standard_B1s"
+    default = "Standard_B2s"
 }
 variable "osDiskName" {
   description = "OS Disk Name"
