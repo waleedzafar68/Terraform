@@ -74,7 +74,7 @@ variable "sourcePorts" {
 }
 variable "destinationPorts" {
   description = "List stating destination ports of rules. Is a cyclic list. Index starts from 0 if length of list != count"   
-  type = list(string)
+  type = list(list(string))
 }
 variable "sourcePrefix" {
     description = "List stating Source Prefixes of rules. Is a cyclic list. Index starts from 0 if length of list != count"      

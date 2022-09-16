@@ -31,7 +31,7 @@ module "NSGDeply" {
   directionRule = var.directionRule
   AllowDeny     = var.AllowDeny
   protocols     = var.protocols
-  sourcePorts   = var.sourcePorts
+  sourcePorts   = var.sourcePorts[count.index]
   destinationPorts = var.destinationPorts
   sourcePrefix  = var.sourcePrefix
   destPrefix    = var.destPrefix

@@ -23,7 +23,7 @@ module "Networking" {
   nsgRulesCount =[4,2,1]
   rulesNSGNames = ["Rule22","Rule3389", "Rule443","Rule80", "Rule22", "Rule5900", "Rule3389"]
   priorities = ["1001","1002","1003","1004"]
-  destinationPorts = ["3389","22","80","443","22","5900","3389"]
+  destinationPorts = [["3389","22","80","443"],["22","5900"],["3389"]]
 }
 #Attaching Subnet to NSG
 
