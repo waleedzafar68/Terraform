@@ -17,6 +17,10 @@ variable "allocationMethod" {
 variable "nicConfigName" {
   description = "Name for the NIC configuration"
 }
+variable "privateIP" {
+  description = "Private IP if allocation method is Static"
+  default = null
+}
 variable "subnetID" {
   description = "NIC's Subnet or VMs Subnet"
 }

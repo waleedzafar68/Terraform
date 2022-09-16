@@ -21,6 +21,7 @@ resource "azurerm_network_interface" "wpNIC" {
     name                          = var.nicConfigName
     subnet_id                     = var.subnetID
     private_ip_address_allocation = var.privAllocationMethod
+    private_ip_address            = var.privateIP
     public_ip_address_id          = azurerm_public_ip.wppubip.id
   }
   tags ={
