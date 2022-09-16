@@ -67,6 +67,6 @@ resource "azurerm_linux_virtual_machine" "VTFWPvm" {
 }
 resource "azurerm_marketplace_agreement" "LinuxVMagreement" {
     publisher = var.plan.publisher
-    offer     = var.plan.offer
+    offer     = var.sourceImage[0].offer
     plan      = var.plan.name
    }
