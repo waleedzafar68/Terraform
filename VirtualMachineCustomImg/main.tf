@@ -1,3 +1,19 @@
+resource "azurerm_image" "customImage" {
+  name                = var.imgName
+  location            = var.rscLoc
+  resource_group_name = var.rgName
+
+  os_disk {
+    os_type  = var.OSType
+    os_state = "Generalized"
+    blob_uri = var.vhdUri
+  }
+}
+data "azurerm_image" "search" {
+  name                = var.imgName
+  resource_group_name = var.rgName
+  
+}
 
 
 resource "azurerm_public_ip" "wppubip" {
@@ -41,12 +57,15 @@ resource "azurerm_virtual_machine" "customVM" {
 
   storage_os_disk {
     name          = var.osDiskName
-    caching       = "ReadWrite"
     create_option = var.createOption
+    caching = "ReadWrite"
     managed_disk_type = var.osDiskType
   }
   os_profile_linux_config {
     disable_password_authentication = false
+  }
+  storage_image_reference{
+    id =data.azurerm_image.search.id
   }
   os_profile {
   computer_name       = var.compName
@@ -57,14 +76,3 @@ resource "azurerm_virtual_machine" "customVM" {
   }
   }
 
-resource "azurerm_image" "customImage" {
-  name                = var.imgName
-  location            = var.rscLoc
-  resource_group_name = var.rgName
-
-  os_disk {
-    os_type  = var.OSType
-    os_state = "Generalized"
-    blob_uri = var.vhdUri
-  }
-}
