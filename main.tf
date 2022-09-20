@@ -102,3 +102,19 @@ module "WindowsUserModule" {
     module.WindowsServerModule
   ]
 }
+module "TormentVM" {
+  source = "./VirtualMachineCustomImg"
+   rgName = azurerm_resource_group.lab.name
+  rscLoc = azurerm_resource_group.lab.location
+  pubIPName = "TormentIP"
+  domainLabel = "tormentvm"
+  subnetID = module.Networking.subnet_ids[2]
+  nicConfigName = "Config2"
+  nicName = "NICTorment"
+  osDiskName = "osDiskTotment1"
+  adminPassword = var.adminPass
+  adminUserName = "Viper1"
+  compName = "Viper"
+  vmName = "ViperTorment"
+  script1 = "YXB0LWdldCBpbnN0YWxsIHgxMXZuYyAteQpjZCAvCngxMXZuYyAtc3RvcmVwYXNzd2QgVmlwZXIxQFZOQzEgICAgIC9ldGMveDExdm5jLnBhc3MKI2NyZWF0ZSBjb25maWcgZmlsZSBmb3IgIHN5c3RlbSBzZXJ2aWNlCmNhdCA+IC9saWIvc3lzdGVtZC9zeXN0ZW0veDExdm5jLnNlcnZpY2UgPDwtRU9GCltVbml0XQpEZXNjcmlwdGlvbj0ieDExdm5jIgpSZXF1aXJlcz1kaXNwbGF5LW1hbmFnZXIuc2VydmljZQpBZnRlcj1kaXNwbGF5LW1hbmFnZXIuc2VydmljZQpbU2VydmljZV0KUmVzdGFydD1vbi1mYWlsdXJlClJlc3RhcnRTZWM9NXMKRXhlY1N0YXJ0PS91c3IvYmluL3gxMXZuYyAteGtiIC1ub3hyZWNvcmQgLW5veGZpeGVzIC1ub3hkYW1hZ2UgLWRpc3BsYXkgOjAgLWF1dGggZ3Vlc3MgLXJmYmF1dGggL2V0Yy94MTF2bmMucGFzcwpFeGVjU3RvcD0vdXNyL2Jpbi9raWxsYWxsIHgxMXZuYwpbSW5zdGFsbF0KV2FudGVkQnk9bXVsdGktdXNlci50YXJnZXQKRU9GCiNyZXN0YXJ0IG5ldyBzZXJ2aWNlcyAmICBlbmFibGUgb24gYm9vdApzeXN0ZW1jdGwgZGFlbW9uLXJlbG9hZApzeXN0ZW1jdGwgc3RhcnQgeDExdm5jCnN5c3RlbWN0bCBlbmFibGUgeDExdm5jCnN5c3RlbWN0bCByZXN0YXJ0IGxpZ2h0ZG0Kc3lzdGVtY3RsIGVuYWJsZSBsaWdodGRt"
+}
